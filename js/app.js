@@ -38,7 +38,7 @@
     t._timer = setTimeout(() => { t.hidden = true; }, ms || 2200);
   }
 
-  /* ---------------- 简笔画示范 ---------------- */
+  /* ---------------- 简笔画示范（含动态演示动画） ---------------- */
   const POSES = {
     'raise':  { head:[60,16], neck:[60,24], hip:[60,56], shL:[46,32], shR:[74,32], elL:[30,40], elR:[90,40], haL:[24,46], haR:[96,46], knL:[46,84], knR:[74,84], ftL:[42,112], ftR:[78,112] },
     'press':  { head:[60,16], neck:[60,24], hip:[60,56], shL:[46,32], shR:[74,32], elL:[46,18], elR:[74,18], haL:[52,6],  haR:[68,6],  knL:[46,84], knR:[74,84], ftL:[42,112], ftR:[78,112] },
@@ -53,21 +53,64 @@
     'plank':  { head:[26,50], neck:[34,52], hip:[68,66], shL:[34,52], shR:[34,52], elL:[32,74], elR:[32,74], haL:[30,94], haR:[30,94], knL:[80,82], knR:[80,82], ftL:[92,98],  ftR:[92,98] },
     'core':   { head:[60,30], neck:[60,38], hip:[60,72], shL:[46,42], shR:[74,42], elL:[44,52], elR:[76,52], haL:[48,46], haR:[72,46], knL:[44,74], knR:[76,74], ftL:[40,58], ftR:[80,58] },
     'dip':    { head:[60,16], neck:[60,24], hip:[60,56], shL:[46,30], shR:[74,30], elL:[44,50], elR:[76,50], haL:[40,58], haR:[80,58], knL:[46,84], knR:[74,84], ftL:[42,112], ftR:[78,112] },
-    'cardio': { head:[60,16], neck:[60,24], hip:[60,56], shL:[46,32], shR:[74,32], elL:[38,40], elR:[82,38], haL:[32,48], haR:[88,34], knL:[70,78], knR:[48,78], ftL:[76,108], ftR:[38,108] }
+    'cardio': { head:[60,16], neck:[60,24], hip:[60,56], shL:[46,32], shR:[74,32], elL:[38,40], elR:[82,38], haL:[32,48], haR:[88,34], knL:[70,78], knR:[48,78], ftL:[76,108], ftR:[38,108] },
+    'stand':  { head:[60,16], neck:[60,24], hip:[60,56], shL:[46,32], shR:[74,32], elL:[44,50], elR:[76,50], haL:[42,66], haR:[78,66], knL:[46,84], knR:[74,84], ftL:[44,112], ftR:[76,112] },
+    'bridge': { head:[28,58], neck:[34,60], hip:[56,44], shL:[34,60], shR:[34,60], elL:[32,72], elR:[32,72], haL:[30,82], haR:[30,82], knL:[66,66], knR:[66,66], ftL:[76,80], ftR:[76,80] },
+    'fold':   { head:[50,46], neck:[54,52], hip:[64,78], shL:[56,58], shR:[56,58], elL:[58,68], elR:[58,68], haL:[70,76], haR:[70,76], knL:[74,88], knR:[74,88], ftL:[88,100], ftR:[88,100] },
+    'prone':  { head:[30,40], neck:[36,44], hip:[64,66], shL:[36,44], shR:[36,44], elL:[40,58], elR:[40,58], haL:[44,66], haR:[44,66], knL:[74,80], knR:[74,80], ftL:[88,92], ftR:[88,92] },
+    'side':   { head:[28,46], neck:[34,48], hip:[60,62], shL:[34,48], shR:[34,48], elL:[32,60], elR:[32,60], haL:[30,70], haR:[30,70], knL:[70,74], knR:[70,56], ftL:[84,86], ftR:[84,48] }
   };
-  function renderIllustration(pattern) {
+
+  // 动态演示：每个 pattern 的起止姿势（from → to → from 循环）
+  const STAND = POSES['stand'];
+  const MOTION = {
+    'raise':   { from: STAND, to: POSES['raise'] },
+    'press':   { from: { head:[60,16],neck:[60,24],hip:[60,56],shL:[46,32],shR:[74,32],elL:[46,40],elR:[74,40],haL:[48,52],haR:[72,52],knL:[46,84],knR:[74,84],ftL:[44,112],ftR:[76,112] }, to: POSES['press'] },
+    'curl':    { from: STAND, to: POSES['curl'] },
+    'pushdown':{ from: { head:[60,16],neck:[60,24],hip:[60,56],shL:[46,32],shR:[74,32],elL:[46,44],elR:[74,44],haL:[46,30],haR:[74,30],knL:[46,84],knR:[74,84],ftL:[44,112],ftR:[76,112] }, to: POSES['pushdown'] },
+    'squat':   { from: STAND, to: POSES['squat'] },
+    'lunge':   { from: STAND, to: POSES['lunge'] },
+    'pull-v':  { from: POSES['pull-v'], to: { head:[60,16],neck:[60,24],hip:[60,56],shL:[46,32],shR:[74,32],elL:[46,42],elR:[74,42],haL:[50,34],haR:[70,34],knL:[46,84],knR:[74,84],ftL:[42,112],ftR:[78,112] } },
+    'pull-h':  { from: { head:[60,14],neck:[60,22],hip:[62,56],shL:[46,28],shR:[74,28],elL:[34,40],elR:[86,40],haL:[26,42],haR:[94,42],knL:[46,84],knR:[76,84],ftL:[42,112],ftR:[78,112] }, to: POSES['pull-h'] },
+    'hinge':   { from: STAND, to: POSES['hinge'] },
+    'push-up': { from: { head:[26,40],neck:[34,42],hip:[64,60],shL:[34,42],shR:[34,42],elL:[32,62],elR:[32,62],haL:[30,84],haR:[30,84],knL:[76,78],knR:[76,78],ftL:[88,96],ftR:[88,96] }, to: POSES['push-up'] },
+    'core':    { from: { head:[60,22],neck:[60,30],hip:[60,76],shL:[46,40],shR:[74,40],elL:[44,54],elR:[76,54],haL:[42,68],haR:[78,68],knL:[44,76],knR:[76,76],ftL:[40,58],ftR:[80,58] }, to: POSES['core'] },
+    'dip':     { from: { head:[60,10],neck:[60,18],hip:[60,52],shL:[46,26],shR:[74,26],elL:[46,42],elR:[74,42],haL:[44,50],haR:[76,50],knL:[46,80],knR:[74,80],ftL:[42,108],ftR:[78,108] }, to: POSES['dip'] },
+    'cardio':  { from: POSES['cardio'], to: { head:[60,16],neck:[60,24],hip:[60,56],shL:[46,32],shR:[74,32],elL:[82,40],elR:[38,40],haL:[88,48],haR:[32,34],knL:[48,78],knR:[70,78],ftL:[38,108],ftR:[76,108] } },
+    'bridge':  { from: { head:[28,58],neck:[34,60],hip:[60,60],shL:[34,60],shR:[34,60],elL:[32,72],elR:[32,72],haL:[30,82],haR:[30,82],knL:[68,72],knR:[68,72],ftL:[76,84],ftR:[76,84] }, to: POSES['bridge'] },
+    'fold':    { from: { head:[50,34],neck:[54,42],hip:[64,78],shL:[52,50],shR:[52,50],elL:[54,62],elR:[54,62],haL:[62,72],haR:[62,72],knL:[74,88],knR:[74,88],ftL:[88,100],ftR:[88,100] }, to: POSES['fold'] },
+    'prone':   { from: { head:[30,52],neck:[36,56],hip:[64,66],shL:[36,56],shR:[36,56],elL:[38,64],elR:[38,64],haL:[42,70],haR:[42,70],knL:[74,80],knR:[74,80],ftL:[88,92],ftR:[88,92] }, to: POSES['prone'] },
+    'side':    { from: { head:[28,46],neck:[34,48],hip:[60,62],shL:[34,48],shR:[34,48],elL:[32,60],elR:[32,60],haL:[30,70],haR:[30,70],knL:[70,74],knR:[70,74],ftL:[84,86],ftR:[84,86] }, to: POSES['side'] }
+  };
+
+  const SEGMENTS = [['neck','hip'],['shL','elL'],['elL','haL'],['shR','elR'],['elR','haR'],['hip','knL'],['knL','ftL'],['hip','knR'],['knR','ftR']];
+
+  function renderIllustration(pattern, animate) {
     const p = POSES[pattern] || POSES['raise'];
-    const S = (a, b) => `<line x1="${a[0]}" y1="${a[1]}" x2="${b[0]}" y2="${b[1]}"/>`;
-    return `<svg class="pose-ill" viewBox="0 0 120 130" aria-hidden="true">
+    const m = (animate && MOTION[pattern]) ? MOTION[pattern] : null;
+    const F = m ? m.from : p;
+    const T = m ? m.to : p;
+    const DUR = '1.7s';
+
+    const animAttrs = (attr, a, b) => m
+      ? ` <animate attributeName="${attr}" values="${a};${b};${a}" dur="${DUR}" repeatCount="indefinite" calcMode="spline" keySplines="0.42 0 0.58 1;0.42 0 0.58 1" keyTimes="0;0.5;1"/>`
+      : '';
+
+    const head = `<circle cx="${p.head[0]}" cy="${p.head[1]}" r="7" class="pose-head"${m ? animAttrs('cx', F.head[0], T.head[0]) + animAttrs('cy', F.head[1], T.head[1]) : ''}/>`;
+
+    const segs = SEGMENTS.map(([ja, jb]) => {
+      const a = p[ja], b = p[jb];
+      if (!m) return `<line x1="${a[0]}" y1="${a[1]}" x2="${b[0]}" y2="${b[1]}"/>`;
+      const fa = F[ja], ta = T[ja], fb = F[jb], tb = T[jb];
+      return `<line x1="${a[0]}" y1="${a[1]}" x2="${b[0]}" y2="${b[1]}">` +
+        animAttrs('x1', fa[0], ta[0]) + animAttrs('y1', fa[1], ta[1]) +
+        animAttrs('x2', fb[0], tb[0]) + animAttrs('y2', fb[1], tb[1]) + `</line>`;
+    }).join('');
+
+    return `<svg class="pose-ill${m ? ' animated' : ''}" viewBox="0 0 120 130" aria-hidden="true">
       <circle cx="60" cy="58" r="44" class="pose-bg"/>
-      <circle cx="${p.head[0]}" cy="${p.head[1]}" r="7" class="pose-head"/>
-      <g class="pose-line">
-        ${S(p.neck, p.hip)}
-        ${S(p.shL, p.elL)}${S(p.elL, p.haL)}
-        ${S(p.shR, p.elR)}${S(p.elR, p.haR)}
-        ${S(p.hip, p.knL)}${S(p.knL, p.ftL)}
-        ${S(p.hip, p.knR)}${S(p.knR, p.ftR)}
-      </g>
+      ${head}
+      <g class="pose-line">${segs}</g>
     </svg>`;
   }
 
@@ -342,7 +385,16 @@
   function renderLibrary(filter) {
     const el = $('#view-library');
     const parts = getBodyParts();
-    let html = `<div class="lib-head"><h2>动作库</h2><p>点击查看图文示范与要点</p></div>`;
+    let html = `<div class="lib-head"><h2>动作库</h2><p>点击查看动态演示、图文与视频教程</p></div>`;
+    html += `<div class="module-row">`;
+    Object.values(MODULES).forEach(mod => {
+      html += `<button class="module-card" onclick="App.openModule('${mod.id}')">
+        <span class="module-icon">${mod.id === 'pilates' ? '🧘' : '🌿'}</span>
+        <span class="module-info"><b>${esc(mod.name)}</b><span>${esc(mod.desc)}</span></span>
+        <span class="ex-chevron">›</span>
+      </button>`;
+    });
+    html += `</div>`;
     html += `<div class="filter-chips" id="lib-filters">
       <button class="chip ${!filter ? 'active' : ''}" data-f="">全部</button>`;
     parts.forEach(p => {
@@ -376,7 +428,8 @@
     const modal = $('#modal');
     modal.innerHTML = `
       <button class="modal-close" onclick="App.closeModal()">✕</button>
-      <div class="modal-ill-wrap">${renderIllustration(ex.pattern)}</div>
+      <div class="modal-ill-wrap">${renderIllustration(ex.pattern, true)}</div>
+      <p class="demo-hint">◉ 动态演示</p>
       <h3 class="modal-title">${esc(ex.name)}</h3>
       <p class="modal-en">${esc(ex.en)}</p>
       <div class="modal-tags">
@@ -399,9 +452,60 @@
       </div>
       ${ex.tips ? `<div class="modal-section"><h4>教练提示</h4><p class="tip-text">${esc(ex.tips)}</p></div>` : ''}
       <div class="modal-section muted"><p>所需器械：${eqNames || '无（自重）'}</p></div>
+      <a class="video-btn" href="https://search.bilibili.com/all?keyword=${encodeURIComponent(ex.name + ' 教学')}" target="_blank" rel="noopener">▶ 看视频教程</a>
       <button class="primary-btn full" onclick="App.addTodayExercise('${ex.id}')">+ 加入今日训练</button>
     `;
     showModal();
+  }
+
+  /* ---------------- 训练模块（普拉提/拉伸） ---------------- */
+  function openModule(id) {
+    const mod = MODULES[id];
+    if (!mod) return;
+    const modal = $('#modal');
+    modal.innerHTML = `
+      <button class="modal-close" onclick="App.closeModal()">✕</button>
+      <h3 class="modal-title">${esc(mod.name)}</h3>
+      <p class="modal-en">${esc(mod.desc)}</p>
+      <div class="eq-ex-list">`;
+    mod.exercises.forEach(exId => {
+      const ex = getExerciseById(exId);
+      if (!ex) return;
+      modal.innerHTML += `<div class="recog-ex" onclick="App.openExercise('${ex.id}')">
+        <div class="lib-ill sm">${renderIllustration(ex.pattern)}</div>
+        <div class="recog-ex-info">
+          <div class="recog-ex-name">${esc(ex.name)}</div>
+          <div class="recog-ex-meta">${esc(ex.bodyPart)} · ${ex.sets}×${ex.reps}</div>
+        </div>
+        <button class="mini-add" onclick="event.stopPropagation();App.addTodayExercise('${ex.id}')">+ 加入</button>
+      </div>`;
+    });
+    modal.innerHTML += `</div>
+      <button class="primary-btn full" onclick="App.addModuleAll('${mod.id}')">将整套加入今日训练</button>`;
+    showModal();
+  }
+
+  function addModuleAll(id) {
+    const mod = MODULES[id];
+    if (!mod) return;
+    const addons = readLocal('fitpai_today_addons', []);
+    let a = addons.find(x => x.date === todayStr());
+    if (!a) { a = { date: todayStr(), exerciseIds: [] }; addons.push(a); }
+    const s = loadSession() || buildSession();
+    const addedIds = [];
+    mod.exercises.forEach(exId => {
+      const ex = getExerciseById(exId);
+      if (!ex) return;
+      let isNew = false;
+      if (!a.exerciseIds.includes(exId)) { a.exerciseIds.push(exId); isNew = true; }
+      if (!s.exercises.find(e => e.id === exId)) { s.exercises.push(makeSessionItem(ex, ex.sets, ex.reps)); isNew = true; }
+      if (isNew && !addedIds.includes(exId)) addedIds.push(exId);
+    });
+    writeLocal('fitpai_today_addons', addons);
+    saveSession(s);
+    closeModal();
+    toast(`已加入 ${addedIds.length} 个动作到今日训练`);
+    renderToday();
   }
 
   /* ---------------- 弹窗 ---------------- */
@@ -876,7 +980,7 @@
     switchView, openExercise, closeModal, addTodayExercise, toggleDone,
     completeWorkout, addTodayRestCardio, openCamera, pickGallery, pickEquipment,
     goOnboarding, goSettings, saveSettings, saveProfile, resetAll,
-    recognizeCurrent
+    recognizeCurrent, openModule, addModuleAll
   };
 
   document.addEventListener('DOMContentLoaded', init);
