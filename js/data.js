@@ -624,6 +624,441 @@ const EXERCISES = [
     ],
     cues: ['膝盖不过度内扣', '座椅高度合适', '阻力适中'],
     tips: '高效燃脂，注意补充水分。'
+  },
+
+  /* ================= 普拉提 ================= */
+  {
+    id: 'pilates-hundred', name: '百次呼吸', en: 'The Hundred',
+    bodyPart: '普拉提', muscle: '核心/腹横肌', equipment: ['mat'],
+    level: '入门', type: '普拉提', pattern: 'core',
+    sets: 3, reps: '10次呼吸', rest: '30秒',
+    steps: [
+      '仰卧屈膝，卷起头肩，双臂伸直悬于身体两侧。',
+      '双腿抬起与地面约成 45°，保持腰椎贴地。',
+      '双臂小幅上下拍动，吸气 5 次、呼气 5 次为 1 组。'
+    ],
+    cues: ['腰背始终贴地', '手臂快速小幅度拍动', '用腹式呼吸'],
+    tips: '普拉提经典热身，激活深层核心。'
+  },
+  {
+    id: 'pilates-roll-up', name: '卷起', en: 'Roll Up',
+    bodyPart: '普拉提', muscle: '腹直肌/脊柱', equipment: ['mat'],
+    level: '入门', type: '普拉提', pattern: 'core',
+    sets: 3, reps: '8次', rest: '30秒',
+    steps: [
+      '仰卧，双腿伸直，双臂举过头顶。',
+      '吸气，缓慢将身体逐节卷起坐直，双臂前伸。',
+      '呼气，逐节下放回到仰卧。'
+    ],
+    cues: ['脊柱一节一节卷动', '不要用惯性甩起', '腹部持续收紧'],
+    tips: '改善脊柱灵活性，动作越慢越有效。'
+  },
+  {
+    id: 'pilates-single-leg-circle', name: '单腿画圈', en: 'Single Leg Circles',
+    bodyPart: '普拉提', muscle: '髋部/核心', equipment: ['mat'],
+    level: '入门', type: '普拉提', pattern: 'core',
+    sets: 3, reps: '5圈/侧', rest: '30秒',
+    steps: [
+      '仰卧，一条腿伸直指向天花板，另一条腿平放。',
+      '以髋为轴，让抬起腿向外、下、内画圈。',
+      '保持骨盆稳定不动，换腿重复。'
+    ],
+    cues: ['骨盆贴地不晃动', '用核心稳定身体', '圈不用太大'],
+    tips: '强化髋关节灵活性与核心稳定。'
+  },
+  {
+    id: 'pilates-rolling-ball', name: '滚动如球', en: 'Rolling Like a Ball',
+    bodyPart: '普拉提', muscle: '核心/平衡', equipment: ['mat'],
+    level: '入门', type: '普拉提', pattern: 'core',
+    sets: 3, reps: '8次', rest: '30秒',
+    steps: [
+      '坐姿屈膝抱小腿，脚离地，背部弓成球形。',
+      '向后滚动至肩胛触地，再借腹部力量滚回坐姿。',
+      '全程保持球状，脚不落地。'
+    ],
+    cues: ['背部保持弓形', '用腹部而非惯性', '滚动节奏均匀'],
+    tips: '按摩脊柱、训练平衡，动作要连贯。'
+  },
+  {
+    id: 'pilates-single-leg-stretch', name: '单腿伸展', en: 'Single Leg Stretch',
+    bodyPart: '普拉提', muscle: '核心', equipment: ['mat'],
+    level: '入门', type: '普拉提', pattern: 'core',
+    sets: 3, reps: '10次/侧', rest: '30秒',
+    steps: [
+      '仰卧卷起头肩，双手抱一侧膝拉向胸口。',
+      '另一条腿伸直抬起，与地面约 45°。',
+      '呼气换腿，交替进行。'
+    ],
+    cues: ['上背保持卷起', '伸直的腿不落地', '动作配合呼吸'],
+    tips: '经典腹部训练，注意腰部贴地。'
+  },
+  {
+    id: 'pilates-double-leg-stretch', name: '双腿伸展', en: 'Double Leg Stretch',
+    bodyPart: '普拉提', muscle: '核心', equipment: ['mat'],
+    level: '入门', type: '普拉提', pattern: 'core',
+    sets: 3, reps: '8次', rest: '30秒',
+    steps: [
+      '仰卧卷起头肩，屈膝抱向胸口。',
+      '吸气，双臂与双腿同时向两端伸展。',
+      '呼气，双臂划圈回到抱膝姿势。'
+    ],
+    cues: ['四肢伸展时核心收紧', '腰背贴地', '伸展幅度量力而行'],
+    tips: '同时锻炼核心与协调性。'
+  },
+  {
+    id: 'pilates-straight-leg-stretch', name: '单直腿伸展', en: 'Single Straight Leg Stretch',
+    bodyPart: '普拉提', muscle: '核心/腘绳肌', equipment: ['mat'],
+    level: '进阶', type: '普拉提', pattern: 'core',
+    sets: 3, reps: '8次/侧', rest: '30秒',
+    steps: [
+      '仰卧卷起头肩，双手抱住一条伸直上抬的腿。',
+      '另一条腿伸直悬空，与地面约 30°。',
+      '呼气将上抬腿轻轻拉向身体两次，换腿。'
+    ],
+    cues: ['腿尽量伸直', '肩颈放松', '腰部保持贴地'],
+    tips: '比单腿伸展更难，需更好的柔韧性。'
+  },
+  {
+    id: 'pilates-criss-cross', name: '十字交叉', en: 'Criss-Cross',
+    bodyPart: '普拉提', muscle: '腹斜肌', equipment: ['mat'],
+    level: '入门', type: '普拉提', pattern: 'core',
+    sets: 3, reps: '10次/侧', rest: '30秒',
+    steps: [
+      '仰卧，双手轻扶头后，屈膝抬腿成桌面式。',
+      '呼气，右肘转向左膝，同时右腿伸直。',
+      '吸气回中，呼气换对侧交替。'
+    ],
+    cues: ['用腹斜肌带动旋转', '肘不拉扯头颈', '下背贴地'],
+    tips: '针对腹斜肌，塑造腰部线条。'
+  },
+  {
+    id: 'pilates-spine-stretch', name: '脊柱前伸', en: 'Spine Stretch Forward',
+    bodyPart: '普拉提', muscle: '脊柱/腘绳肌', equipment: ['mat'],
+    level: '入门', type: '普拉提', pattern: 'fold',
+    sets: 3, reps: '6次', rest: '30秒',
+    steps: [
+      '坐姿，双腿伸直略宽于肩，双臂前伸与肩同高。',
+      '吸气准备，呼气时逐节向前卷动，双臂前伸。',
+      '吸气回到坐直。'
+    ],
+    cues: ['从头顶开始逐节卷动', '背部呈 C 形', '不耸肩'],
+    tips: '拉伸脊柱与大腿后侧，改善坐姿体态。'
+  },
+  {
+    id: 'pilates-saw', name: '锯式', en: 'Saw',
+    bodyPart: '普拉提', muscle: '腹斜肌/脊柱', equipment: ['mat'],
+    level: '进阶', type: '普拉提', pattern: 'fold',
+    sets: 3, reps: '6次/侧', rest: '30秒',
+    steps: [
+      '坐姿，双腿伸直分开，双臂向两侧平举。',
+      '呼气，上身向左扭转，右手伸向左脚外侧。',
+      '吸气回中，换另一侧。'
+    ],
+    cues: ['扭转时保持骨盆稳定', '用手去够脚外侧', '背部延展'],
+    tips: '结合扭转与前屈，增强脊柱活动度。'
+  },
+  {
+    id: 'pilates-swan', name: '天鹅式', en: 'Swan',
+    bodyPart: '普拉提', muscle: '背部/脊柱伸展', equipment: ['mat'],
+    level: '入门', type: '普拉提', pattern: 'prone',
+    sets: 3, reps: '8次', rest: '30秒',
+    steps: [
+      '俯卧，双手撑于肩旁，双腿并拢。',
+      '吸气，背部发力抬起上身，双臂微撑。',
+      '呼气缓慢下放。'
+    ],
+    cues: ['用背部而非手臂发力', '颈部保持延展', '耻骨贴地'],
+    tips: '改善圆肩驼背，强化竖脊肌。'
+  },
+  {
+    id: 'pilates-single-leg-kick', name: '单腿踢', en: 'Single Leg Kick',
+    bodyPart: '普拉提', muscle: '腘绳肌/背部', equipment: ['mat'],
+    level: '入门', type: '普拉提', pattern: 'prone',
+    sets: 3, reps: '8次/侧', rest: '30秒',
+    steps: [
+      '俯卧，前臂撑地抬起上身，双腿伸直。',
+      '呼气，一侧脚跟向臀部方向踢两次。',
+      '换腿交替。'
+    ],
+    cues: ['骨盆保持贴地', '踢腿时身体稳定', '肘在肩正下方'],
+    tips: '锻炼大腿后侧与背部伸展。'
+  },
+  {
+    id: 'pilates-double-leg-kick', name: '双腿踢', en: 'Double Leg Kick',
+    bodyPart: '普拉提', muscle: '背部/臀腿', equipment: ['mat'],
+    level: '进阶', type: '普拉提', pattern: 'prone',
+    sets: 3, reps: '6次', rest: '30秒',
+    steps: [
+      '俯卧，双手背后相扣，头转向一侧。',
+      '屈膝，脚跟向臀部踢三次，同时抬起上身。',
+      '缓慢还原。'
+    ],
+    cues: ['踢腿时收紧臀部', '肩胛骨向后下方', '颈部放松'],
+    tips: '强化整个后侧链，改善体态。'
+  },
+  {
+    id: 'pilates-swimming', name: '游泳式', en: 'Swimming',
+    bodyPart: '普拉提', muscle: '背部/核心', equipment: ['mat'],
+    level: '进阶', type: '普拉提', pattern: 'prone',
+    sets: 3, reps: '20次', rest: '30秒',
+    steps: [
+      '俯卧，双臂前伸，双腿伸直。',
+      '同时抬起对侧手臂和腿（左臂+右腿），交替进行。',
+      '像游泳一样小幅快速交替拍动。'
+    ],
+    cues: ['四肢抬离地面', '核心收紧保护腰椎', '动作小而快'],
+    tips: '全身后链训练，注意别过度仰头。'
+  },
+  {
+    id: 'pilates-shoulder-bridge', name: '肩桥', en: 'Shoulder Bridge',
+    bodyPart: '普拉提', muscle: '臀/腘绳肌/核心', equipment: ['mat'],
+    level: '入门', type: '普拉提', pattern: 'bridge',
+    sets: 3, reps: '10次', rest: '30秒',
+    steps: [
+      '仰卧屈膝，双脚与髋同宽，双臂放体侧。',
+      '呼气，臀部发力将髋部抬离地面至肩、髋、膝成直线。',
+      '顶峰停留，吸气缓慢下放。'
+    ],
+    cues: ['用臀部发力而非腰部', '膝盖不要外张', '顶峰收紧臀部'],
+    tips: '激活臀肌、稳定骨盆，改善久坐臀无力。'
+  },
+  {
+    id: 'pilates-side-leg-lift', name: '侧卧抬腿', en: 'Side Leg Lifts',
+    bodyPart: '普拉提', muscle: '臀中肌/大腿外侧', equipment: ['mat'],
+    level: '入门', type: '普拉提', pattern: 'side',
+    sets: 3, reps: '12次/侧', rest: '30秒',
+    steps: [
+      '侧卧，下方手臂支撑头部，双腿伸直叠放。',
+      '呼气，上方腿向上抬起约 45°。',
+      '吸气缓慢下放，换侧重复。'
+    ],
+    cues: ['骨盆垂直于地面', '脚尖朝前不外翻', '动作缓慢控制'],
+    tips: '强化臀中肌，改善髋部稳定。'
+  },
+  {
+    id: 'pilates-cat-cow', name: '猫牛式', en: 'Cat-Cow',
+    bodyPart: '普拉提', muscle: '脊柱/核心', equipment: ['mat'],
+    level: '入门', type: '普拉提', pattern: 'fold',
+    sets: 3, reps: '10次', rest: '30秒',
+    steps: [
+      '四肢撑地，手腕在肩正下方，膝盖在髋正下方。',
+      '吸气塌腰抬头（牛式），呼气弓背低头（猫式）。',
+      '配合呼吸缓慢交替。'
+    ],
+    cues: ['动作从脊柱逐节开始', '配合深长呼吸', '核心微收'],
+    tips: '脊柱热身的黄金动作，缓解腰背僵硬。'
+  },
+  {
+    id: 'pilates-spine-twist', name: '脊柱扭转', en: 'Spine Twist',
+    bodyPart: '普拉提', muscle: '腹斜肌/脊柱', equipment: ['mat'],
+    level: '入门', type: '普拉提', pattern: 'fold',
+    sets: 3, reps: '8次/侧', rest: '30秒',
+    steps: [
+      '坐姿，双腿伸直，双臂向两侧平举。',
+      '吸气延展脊柱，呼气上身向一侧扭转。',
+      '吸气回中，换另一侧。'
+    ],
+    cues: ['骨盆保持稳定', '扭转发生在胸椎', '肩膀放松下沉'],
+    tips: '改善胸椎灵活性与腰腹控制。'
+  },
+
+  /* ================= 拉伸 ================= */
+  {
+    id: 'stretch-forward-fold', name: '站姿前屈', en: 'Standing Forward Fold',
+    bodyPart: '拉伸', muscle: '腘绳肌/下背', equipment: ['mat'],
+    level: '入门', type: '拉伸', pattern: 'hinge',
+    sets: 2, reps: '30秒', rest: '20秒',
+    steps: [
+      '站姿，双脚与髋同宽，膝盖微屈。',
+      '呼气，以髋为轴向前折叠，双手垂向地面。',
+      '保持 30 秒，缓慢起身。'
+    ],
+    cues: ['膝盖微屈保护下背', '让重力自然拉伸', '不强行够地'],
+    tips: '训练后拉伸大腿后侧，缓解紧绷。'
+  },
+  {
+    id: 'stretch-hamstring', name: '坐姿腘绳肌拉伸', en: 'Seated Hamstring Stretch',
+    bodyPart: '拉伸', muscle: '腘绳肌', equipment: ['mat'],
+    level: '入门', type: '拉伸', pattern: 'fold',
+    sets: 2, reps: '30秒/侧', rest: '20秒',
+    steps: [
+      '坐姿，一条腿伸直，另一条腿屈膝脚贴大腿内侧。',
+      '上身前倾，双手伸向伸直腿的脚尖。',
+      '保持背部延展，感受大腿后侧拉伸。'
+    ],
+    cues: ['背部保持平直', '从髋部前倾', '不要弓背够脚'],
+    tips: '每条腿保持 30 秒，均匀呼吸。'
+  },
+  {
+    id: 'stretch-quad', name: '股四头肌拉伸', en: 'Standing Quad Stretch',
+    bodyPart: '拉伸', muscle: '股四头肌', equipment: ['mat'],
+    level: '入门', type: '拉伸', pattern: 'fold',
+    sets: 2, reps: '30秒/侧', rest: '20秒',
+    steps: [
+      '站姿，单手扶墙保持平衡。',
+      '另一手抓住同侧脚踝，将脚跟拉向臀部。',
+      '双膝并拢，保持 30 秒后换腿。'
+    ],
+    cues: ['膝盖朝下并拢', '骨盆不要前倾', '感受大腿前侧拉伸'],
+    tips: '练腿后必做，防止大腿前侧紧张。'
+  },
+  {
+    id: 'stretch-chest', name: '门框胸肌拉伸', en: 'Doorway Chest Stretch',
+    bodyPart: '拉伸', muscle: '胸大肌', equipment: ['mat'],
+    level: '入门', type: '拉伸', pattern: 'raise',
+    sets: 2, reps: '30秒', rest: '20秒',
+    steps: [
+      '站于门框旁，前臂贴住门框，肘与肩同高。',
+      '身体缓慢向前倾，感受胸部拉伸。',
+      '保持 30 秒，可调整手臂高度拉伸不同部位。'
+    ],
+    cues: ['肩部放松下沉', '身体前倾而非前压', '呼吸均匀'],
+    tips: '卧推后拉伸胸肌，改善圆肩。'
+  },
+  {
+    id: 'stretch-shoulder', name: '肩部交叉拉伸', en: 'Cross-body Shoulder Stretch',
+    bodyPart: '拉伸', muscle: '三角肌后束/肩', equipment: ['mat'],
+    level: '入门', type: '拉伸', pattern: 'raise',
+    sets: 2, reps: '30秒/侧', rest: '20秒',
+    steps: [
+      '站姿或坐姿，一条手臂伸直横过胸前。',
+      '另一手肘勾住该手臂，轻轻拉向身体。',
+      '保持 30 秒，换侧。'
+    ],
+    cues: ['肩膀下沉不耸肩', '轻柔拉伸不过度', '保持呼吸'],
+    tips: '练肩后放松三角肌后束。'
+  },
+  {
+    id: 'stretch-child-pose', name: '婴儿式', en: 'Child\'s Pose',
+    bodyPart: '拉伸', muscle: '下背/肩/髋', equipment: ['mat'],
+    level: '入门', type: '拉伸', pattern: 'fold',
+    sets: 2, reps: '30-60秒', rest: '20秒',
+    steps: [
+      '跪姿，双膝略宽于髋，臀部坐向脚跟。',
+      '上身前倾趴下，双臂向前伸展，额头贴地。',
+      '保持深长呼吸，放松全身。'
+    ],
+    cues: ['臀部尽量贴脚跟', '手臂向前延伸', '全身放松'],
+    tips: '极佳的放松体式，缓解腰背紧张。'
+  },
+  {
+    id: 'stretch-pigeon', name: '鸽子式', en: 'Pigeon Pose',
+    bodyPart: '拉伸', muscle: '臀/髋部', equipment: ['mat'],
+    level: '进阶', type: '拉伸', pattern: 'fold',
+    sets: 2, reps: '30-60秒/侧', rest: '20秒',
+    steps: [
+      '从四点支撑开始，将一侧小腿横放于身前。',
+      '另一条腿向后伸直，髋部摆正下沉。',
+      '上身可前倾加深拉伸，保持后换侧。'
+    ],
+    cues: ['髋部摆正不歪斜', '前腿膝盖不勉强', '感受臀部拉伸'],
+    tips: '深度拉伸臀肌，缓解久坐与练腿后的紧张。'
+  },
+  {
+    id: 'stretch-butterfly', name: '蝴蝶式', en: 'Butterfly Stretch',
+    bodyPart: '拉伸', muscle: '大腿内侧/髋', equipment: ['mat'],
+    level: '入门', type: '拉伸', pattern: 'fold',
+    sets: 2, reps: '30-60秒', rest: '20秒',
+    steps: [
+      '坐姿，双脚脚掌相对，双膝向两侧打开。',
+      '双手抓住脚尖，上身前倾。',
+      '保持背部延展，感受大腿内侧拉伸。'
+    ],
+    cues: ['膝盖向地面放松下沉', '背部挺直', '不强行压膝'],
+    tips: '改善髋部柔韧性，练腿日好搭档。'
+  },
+  {
+    id: 'stretch-side-bend', name: '侧腰拉伸', en: 'Side Bend Stretch',
+    bodyPart: '拉伸', muscle: '腹斜肌/侧腰', equipment: ['mat'],
+    level: '入门', type: '拉伸', pattern: 'fold',
+    sets: 2, reps: '30秒/侧', rest: '20秒',
+    steps: [
+      '站姿或坐姿，双臂上举过头。',
+      '一侧手臂带动身体向对侧弯曲。',
+      '保持 30 秒，换侧。'
+    ],
+    cues: ['髋部保持稳定', '感受侧腰延展', '不要前倾后仰'],
+    tips: '拉伸腹斜肌，缓解腰部两侧紧张。'
+  },
+
+  /* ================= 力量/有氧增强 ================= */
+  {
+    id: 'kettlebell-swing', name: '壶铃摆荡', en: 'Kettlebell Swing',
+    bodyPart: '腿', muscle: '臀/腘绳肌/核心', equipment: ['kettlebell'],
+    level: '进阶', type: '复合', pattern: 'hinge',
+    sets: 4, reps: '12-15', rest: '90秒',
+    steps: [
+      '双脚略宽于肩，双手握壶铃垂于身前。',
+      '屈髋将壶铃向后摆过双腿之间。',
+      '爆发伸髋将壶铃摆至胸前高度，重复。'
+    ],
+    cues: ['用髋部发力而非手臂', '背部保持平直', '壶铃摆到胸前即可'],
+    tips: '极佳的髋部爆发力与燃脂训练。'
+  },
+  {
+    id: 'bulgarian-split-squat', name: '保加利亚分腿蹲', en: 'Bulgarian Split Squat',
+    bodyPart: '腿', muscle: '股四头肌/臀', equipment: ['dumbbell','bench'],
+    level: '进阶', type: '复合', pattern: 'lunge',
+    sets: 3, reps: '10-12/侧', rest: '90秒',
+    steps: [
+      '背对训练凳站立，一脚脚背搭在凳上。',
+      '前腿下蹲至大腿与地面平行，膝盖不内扣。',
+      '前腿发力蹬起，完成一侧后换腿。'
+    ],
+    cues: ['前腿膝盖与脚尖同向', '躯干保持直立', '重心在前腿'],
+    tips: '单侧练腿之王，改善左右腿不均衡。'
+  },
+  {
+    id: 'farmers-carry', name: '农夫行走', en: 'Farmer\'s Carry',
+    bodyPart: '腿', muscle: '握力/核心/全身', equipment: ['dumbbell','kettlebell'],
+    level: '入门', type: '复合', pattern: 'stand',
+    sets: 3, reps: '30秒', rest: '60秒',
+    steps: [
+      '双手各持一个重物垂于体侧，站直。',
+      '收紧核心，保持身体正直向前行走。',
+      '走 30 秒或一段距离后放下。'
+    ],
+    cues: ['肩膀下沉不耸肩', '核心收紧', '步子平稳'],
+    tips: '强化握力与核心稳定，实用性极强。'
+  },
+  {
+    id: 'burpee', name: '波比跳', en: 'Burpee',
+    bodyPart: '有氧', muscle: '全身', equipment: ['mat'],
+    level: '进阶', type: '有氧', pattern: 'cardio',
+    sets: 4, reps: '10-15', rest: '60秒',
+    steps: [
+      '站姿下蹲，双手撑地后向后跳成俯卧撑姿势。',
+      '做一个俯卧撑，双脚跳回手旁。',
+      '向上跳起，双手过头拍掌。'
+    ],
+    cues: ['动作连贯不停顿', '核心全程收紧', '落地轻柔'],
+    tips: '高效燃脂全身训练，注意保护膝盖。'
+  },
+  {
+    id: 'mountain-climbers', name: '登山者', en: 'Mountain Climbers',
+    bodyPart: '核心', muscle: '核心/心肺', equipment: ['mat'],
+    level: '入门', type: '复合', pattern: 'plank',
+    sets: 3, reps: '30秒', rest: '45秒',
+    steps: [
+      '俯卧撑姿势，身体成直线。',
+      '交替将膝盖向胸口方向快速提拉。',
+      '保持臀部稳定，快速交替。'
+    ],
+    cues: ['臀部不要抬高', '核心收紧', '节奏快速均匀'],
+    tips: '核心+有氧结合，高效燃脂。'
+  },
+  {
+    id: 'dumbbell-shrug', name: '哑铃耸肩', en: 'Dumbbell Shrug',
+    bodyPart: '肩', muscle: '斜方肌', equipment: ['dumbbell'],
+    level: '入门', type: '孤立', pattern: 'stand',
+    sets: 3, reps: '12-15', rest: '60秒',
+    steps: [
+      '站姿，双手持哑铃垂于体侧。',
+      '肩部向上耸起，尽量靠近耳朵。',
+      '顶峰停顿，缓慢下放。'
+    ],
+    cues: ['不要用惯性甩动', '手臂保持伸直', '顶峰充分收缩'],
+    tips: '强化斜方肌上部，改善肩颈线条。'
   }
 ];
 
@@ -671,6 +1106,27 @@ const SPLITS = {
   ]
 };
 
+/* 训练模块：普拉提 / 拉伸放松（独立成套，可随时跟练） */
+const MODULES = {
+  'pilates': {
+    id: 'pilates', name: '普拉提模块', desc: '约 25 分钟垫上普拉提，强化核心、改善体态与身体控制',
+    exercises: [
+      'pilates-hundred', 'pilates-roll-up', 'pilates-single-leg-circle',
+      'pilates-rolling-ball', 'pilates-single-leg-stretch', 'pilates-double-leg-stretch',
+      'pilates-criss-cross', 'pilates-spine-stretch', 'pilates-swan',
+      'pilates-shoulder-bridge', 'pilates-side-leg-lift', 'pilates-spine-twist'
+    ]
+  },
+  'stretch': {
+    id: 'stretch', name: '拉伸放松模块', desc: '约 15 分钟全身拉伸，缓解肌肉紧张、提升柔韧性',
+    exercises: [
+      'stretch-forward-fold', 'stretch-hamstring', 'stretch-quad',
+      'stretch-chest', 'stretch-shoulder', 'stretch-child-pose',
+      'stretch-pigeon', 'stretch-butterfly', 'stretch-side-bend'
+    ]
+  }
+};
+
 /* ---------- 辅助函数 ---------- */
 function getExerciseById(id) {
   return EXERCISES.find(e => e.id === id) || null;
@@ -689,7 +1145,7 @@ function getExercisesByBodyPart(bodyPart) {
 }
 
 function getBodyParts() {
-  return ['胸','背','腿','肩','二头','三头','核心','有氧'];
+  return ['胸','背','腿','肩','二头','三头','核心','普拉提','拉伸','有氧'];
 }
 
 /* 根据器械名/动作名关键词在库中模糊匹配（AI 识别结果落地用） */
