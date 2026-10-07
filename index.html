@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+  <meta name="theme-color" content="#0d1117" />
+  <meta name="description" content="Fit拍 · 私人健身教练 —— 拍照识别器械/动作，自动生成一周 3-4 练训练计划" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="Fit拍" />
+  <link rel="manifest" href="manifest.json" />
+  <link rel="icon" type="image/svg+xml" href="icons/icon.svg" />
+  <link rel="apple-touch-icon" href="icons/icon-192.png" />
+  <title>Fit拍 · 私人健身教练</title>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <div id="app">
+    <!-- 顶部标题栏 -->
+    <header class="app-header">
+      <div class="header-left">
+        <span class="logo-dot"></span>
+        <span class="app-title">Fit拍</span>
+      </div>
+      <div class="header-right">
+        <button id="btn-quick-scan" class="icon-btn" aria-label="快速拍照识别">
+          <svg viewBox="0 0 24 24" width="22" height="22"><path fill="currentColor" d="M9 2 7.2 4H4a2 2 0 0 0-2 2v2.2H0V6a4 4 0 0 1 4-4h3.2L9 2Zm6 0L16.8 4H20a2 2 0 0 1 2 2v2.2h2V6a4 4 0 0 0-4-4h-3.2L15 2ZM2 15.8V18a2 2 0 0 0 2 2h3.2L9 22H6a4 4 0 0 1-4-4v-2.2h0Zm20 0V18a4 4 0 0 1-4 4h-3.2L13 22h3a4 4 0 0 0 4-4v-2.2h2ZM7 7h10v10H7V7Z"/></svg>
+        </button>
+      </div>
+    </header>
+
+    <!-- 主内容区：各视图 -->
+    <main class="view-container" id="view-container">
+      <!-- 今日训练 -->
+      <section class="view active" id="view-today" data-view="today"></section>
+      <!-- 拍照识别 -->
+      <section class="view" id="view-scan" data-view="scan"></section>
+      <!-- 训练计划 -->
+      <section class="view" id="view-plan" data-view="plan"></section>
+      <!-- 动作库 -->
+      <section class="view" id="view-library" data-view="library"></section>
+      <!-- 我的 -->
+      <section class="view" id="view-profile" data-view="profile"></section>
+    </main>
+
+    <!-- 底部导航 -->
+    <nav class="bottom-nav">
+      <button class="nav-item active" data-nav="today">
+        <span class="nav-icon">⌂</span>
+        <span class="nav-label">今日</span>
+      </button>
+      <button class="nav-item nav-scan" data-nav="scan">
+        <span class="nav-icon nav-icon-scan">
+          <svg viewBox="0 0 24 24" width="24" height="24"><path fill="currentColor" d="M12 1.5a1.5 1.5 0 0 1 1.5 1.5v2.1l1.9-1.1a1.5 1.5 0 1 1 1.5 2.6L14.4 7.8 17.5 9a1.5 1.5 0 0 1-1.5 2.6l-2.5-1.4v5.6l2.5-1.4a1.5 1.5 0 1 1 1.5 2.6L14.4 18l2.5 1.4a1.5 1.5 0 0 1-1.5 2.6l-1.9-1.1V23a1.5 1.5 0 0 1-3 0v-2.1l-1.9 1.1a1.5 1.5 0 1 1-1.5-2.6L9.6 18l-2.5-1.4a1.5 1.5 0 0 1 1.5-2.6l2.5 1.4V9.8L8.6 11.2a1.5 1.5 0 1 1-1.5-2.6L9.6 7.8 7.1 6.4a1.5 1.5 0 0 1 1.5-2.6l1.9 1.1V3A1.5 1.5 0 0 1 12 1.5Z"/></svg>
+        </span>
+        <span class="nav-label">拍照</span>
+      </button>
+      <button class="nav-item" data-nav="plan">
+        <span class="nav-icon">▦</span>
+        <span class="nav-label">计划</span>
+      </button>
+      <button class="nav-item" data-nav="library">
+        <span class="nav-icon">⌗</span>
+        <span class="nav-label">动作</span>
+      </button>
+      <button class="nav-item" data-nav="profile">
+        <span class="nav-icon">◉</span>
+        <span class="nav-label">我的</span>
+      </button>
+    </nav>
+
+    <!-- 全屏相机 -->
+    <div class="camera-overlay" id="camera-overlay" hidden>
+      <div class="camera-topbar">
+        <button id="btn-camera-close" class="icon-btn light" aria-label="关闭">✕</button>
+        <span class="camera-title" id="camera-title">拍摄器械 / 动作</span>
+        <button id="btn-camera-switch" class="icon-btn light" aria-label="切换摄像头">⟳</button>
+      </div>
+      <video id="camera-video" autoplay playsinline muted></video>
+      <div class="camera-frame">
+        <div class="scan-corners"></div>
+        <p class="camera-hint">将器械或动作置于取景框内</p>
+      </div>
+      <div class="camera-bottom">
+        <button id="btn-camera-gallery" class="camera-sub-btn">相册</button>
+        <button id="btn-camera-shutter" class="shutter-btn" aria-label="拍照">
+          <span class="shutter-inner"></span>
+        </button>
+        <button id="btn-camera-flash" class="camera-sub-btn">⚡</button>
+      </div>
+      <input type="file" id="file-input" accept="image/*" hidden />
+    </div>
+
+    <!-- 全屏图片预览 + 识别 -->
+    <div class="preview-overlay" id="preview-overlay" hidden>
+      <div class="preview-topbar">
+        <button id="btn-preview-back" class="icon-btn light" aria-label="返回">←</button>
+        <span class="camera-title">确认照片</span>
+        <button id="btn-preview-use" class="preview-use-btn">使用</button>
+      </div>
+      <img id="preview-image" alt="待识别照片" />
+      <div class="preview-actions">
+        <button id="btn-preview-retake" class="ghost-btn">重拍</button>
+        <button id="btn-preview-recognize" class="primary-btn">开始识别</button>
+      </div>
+    </div>
+
+    <!-- 通用弹窗 -->
+    <div class="modal-mask" id="modal-mask" hidden>
+      <div class="modal" id="modal" role="dialog"></div>
+    </div>
+
+    <!-- 识别中 / 加载层 -->
+    <div class="loading-mask" id="loading-mask" hidden>
+      <div class="loading-box">
+        <div class="spinner"></div>
+        <p id="loading-text">正在识别…</p>
+      </div>
+    </div>
+
+    <!-- Toast -->
+    <div class="toast" id="toast" hidden></div>
+  </div>
+
+  <script src="js/data.js"></script>
+  <script src="js/db.js"></script>
+  <script src="js/camera.js"></script>
+  <script src="js/ai.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
