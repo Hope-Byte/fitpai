@@ -235,6 +235,32 @@ h3 { font-size: 17px; }
 .pose-ill .pose-head { fill: none; stroke: var(--primary); stroke-width: 4; }
 .pose-ill .pose-line { stroke: var(--primary); stroke-width: 4; stroke-linecap: round; stroke-linejoin: round; fill: none; }
 
+/* 动态演示动画 */
+.pose-ill.animated .pose-bg { animation: poseBreathe 1.7s ease-in-out infinite; }
+@keyframes poseBreathe { 0%, 100% { opacity: .45; } 50% { opacity: .9; } }
+.demo-hint { text-align: center; color: var(--muted); font-size: 11.5px; margin: -4px 0 6px; }
+
+/* 训练模块卡片 */
+.module-row { display: flex; flex-direction: column; gap: 10px; margin-bottom: 16px; }
+.module-card {
+  display: flex; align-items: center; gap: 12px; padding: 14px;
+  background: linear-gradient(135deg, rgba(34,197,94,.12), rgba(45,212,191,.12));
+  border: 1px solid rgba(45,212,167,.35); border-radius: var(--radius); text-align: left;
+}
+.module-icon { font-size: 26px; flex: none; }
+.module-info { flex: 1; min-width: 0; }
+.module-info b { display: block; font-size: 15px; }
+.module-info span { color: var(--muted); font-size: 12.5px; display: block; margin-top: 2px; }
+
+/* 视频教程按钮 */
+.video-btn {
+  display: flex; align-items: center; justify-content: center; gap: 6px;
+  width: 100%; padding: 13px; margin-bottom: 10px; border-radius: var(--radius);
+  background: var(--surface-2); border: 1px solid var(--border);
+  color: var(--text); font-weight: 700; text-decoration: none; font-size: 15px;
+}
+.video-btn:active { background: var(--surface-3); }
+
 /* ---------------- 拍照识别 ---------------- */
 .scan-hero { margin-bottom: 16px; }
 .scan-hero p { color: var(--muted); font-size: 13.5px; margin-top: 4px; }
